@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getAssetPath } from "@/lib/images";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -96,7 +97,7 @@ export default function HeroSequence() {
         style={{ clipPath: "inset(48% 10% 48% 10%)" }}
       >
         <img
-          src="/portfolio/main.jpg"
+          src={getAssetPath("/portfolio/main.jpg")}
           alt="Signature photograph by Rohit Kumar"
           className="w-full h-full object-cover"
         />
@@ -106,7 +107,7 @@ export default function HeroSequence() {
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center">
         <h1
           ref={nameContainerRef}
-          className="font-[family-name:var(--font-syne)] font-extrabold text-5xl md:text-7xl lg:text-8xl tracking-[-0.02em] text-white flex"
+          className="font-[family-name:var(--font-syne)] font-extrabold text-3xl sm:text-5xl md:text-7xl lg:text-8xl tracking-[-0.02em] text-white flex"
         >
           {nameText.split("").map((char, i) => (
             <span
@@ -120,7 +121,7 @@ export default function HeroSequence() {
         </h1>
         <p
           ref={taglineRef}
-          className="font-[family-name:var(--font-syne)] font-medium text-xs md:text-sm tracking-[0.4em] mt-6 opacity-0 translate-y-[10px]"
+          className="font-[family-name:var(--font-syne)] font-medium text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.4em] mt-4 sm:mt-6 opacity-0 translate-y-[10px]"
           style={{ color: "var(--text-secondary)" }}
         >
           <span style={{ color: "#255f38" }}>WILDLIFE</span>

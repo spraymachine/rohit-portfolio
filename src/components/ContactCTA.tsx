@@ -79,7 +79,7 @@ export default function ContactCTA() {
         {/* Heading with split text */}
         <h2
           ref={headingRef}
-          className="font-[family-name:var(--font-syne)] font-extrabold text-4xl md:text-6xl lg:text-7xl tracking-[-0.02em] mb-6 flex flex-wrap justify-center gap-x-3"
+          className="font-[family-name:var(--font-syne)] font-extrabold text-2xl sm:text-4xl md:text-6xl lg:text-7xl tracking-[-0.02em] mb-6 flex flex-wrap justify-center gap-x-2 sm:gap-x-3"
         >
           {headingText.split(" ").map((word, wi) => (
             <span key={wi} className="inline-flex">

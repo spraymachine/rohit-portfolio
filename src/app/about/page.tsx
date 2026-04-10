@@ -226,12 +226,12 @@ export default function AboutPage() {
               {/* Stats */}
               <div
                 ref={statsRef}
-                className="flex gap-10 mt-10 pt-8 border-t border-white/10"
+                className="flex gap-6 sm:gap-10 mt-10 pt-8 border-t border-white/10"
               >
                 {stats.map((stat) => (
                   <div key={stat.label} className="text-center">
                     <div
-                      className="stat-value font-[family-name:var(--font-syne)] font-extrabold text-3xl gradient-text"
+                      className="stat-value font-[family-name:var(--font-syne)] font-extrabold text-2xl sm:text-3xl gradient-text"
                       data-value={stat.value}
                       data-suffix={stat.suffix}
                     >

@@ -89,7 +89,7 @@ export default function WorkGallery() {
       </div>
 
       {/* Circular Gallery */}
-      <div className="relative h-[500px] md:h-[600px] lg:h-[700px]">
+      <div className="relative h-[350px] sm:h-[500px] md:h-[600px] lg:h-[700px]">
         <CircularGallery
           items={curatedItems}
           bend={5}

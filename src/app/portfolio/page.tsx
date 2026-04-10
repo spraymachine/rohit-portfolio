@@ -26,7 +26,15 @@ const categories: { key: ImageCategory; label: string }[] = [
 
 export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState<ImageCategory>("all");
+  const [isMobile, setIsMobile] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const filteredImages = useMemo(() => {
     return getFilteredImages(activeCategory).map((img) => ({
@@ -63,7 +71,7 @@ export default function PortfolioPage() {
         <div className="text-center mb-8">
           <h1
             ref={headingRef}
-            className="font-[family-name:var(--font-syne)] font-extrabold text-5xl md:text-7xl tracking-[-0.02em] flex justify-center"
+            className="font-[family-name:var(--font-syne)] font-extrabold text-3xl sm:text-5xl md:text-7xl tracking-[-0.02em] flex justify-center"
           >
             {headingText.split("").map((char, i) => (
               <span key={i} className="port-char inline-block opacity-0">
@@ -85,7 +93,7 @@ export default function PortfolioPage() {
               onClick={() => setActiveCategory(cat.key)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-5 py-2 rounded-full font-[family-name:var(--font-syne)] text-xs tracking-[0.15em] transition-all duration-300 cursor-pointer"
+              className="px-3 sm:px-5 py-1.5 sm:py-2 rounded-full font-[family-name:var(--font-syne)] text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] transition-all duration-300 cursor-pointer"
               style={{
                 border:
                   activeCategory === cat.key
@@ -125,14 +133,14 @@ export default function PortfolioPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
           className="w-full"
-          style={{ height: "calc(100vh - 220px)" }}
+          style={{ height: "calc(100vh - 280px)" }}
         >
           <DomeGallery
             images={filteredImages}
             fit={0.5}
-            minRadius={650}
+            minRadius={isMobile ? 300 : 650}
             maxVerticalRotationDeg={0}
-            segments={34}
+            segments={isMobile ? 16 : 34}
             dragDampening={2}
             grayscale={false}
             overlayBlurColor="#000000"
