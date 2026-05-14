@@ -8,337 +8,405 @@ import { curatedItems } from "@/lib/images";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ACCENT = "#0022ff";
+type Frame = {
+  image: string;
+  title: string;
+  style: string;
+  medium: string;
+  year: string;
+};
+
+// Curated showcase (subset, enriched with meta)
+const FRAMES: Frame[] = [
+  { image: curatedItems[0].image, title: "Eagle", style: "Wildlife", medium: "Telephoto", year: "2024" },
+  { image: curatedItems[1].image, title: "Moto Race", style: "Motorsport", medium: "Track Side", year: "2024" },
+  { image: curatedItems[4].image, title: "MIG 29K", style: "Aviation", medium: "Air Show", year: "2023" },
+  { image: curatedItems[3].image, title: "Portrait", style: "Editorial", medium: "Studio Light", year: "2025" },
+  { image: curatedItems[10].image, title: "Golden Hour", style: "Landscape", medium: "Available Light", year: "2024" },
+];
 
 export default function WorkGallery() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const eyebrowRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const [hoverIdx, setHoverIdx] = useState<number | null>(null);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        eyebrowRef.current,
-        { opacity: 0, y: 12 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 85%" },
-        }
-      );
-
-      const chars = headingRef.current?.querySelectorAll(".work-char");
+      const chars = headingRef.current?.querySelectorAll(".sw-char");
       if (chars) {
         gsap.fromTo(
           chars,
-          { opacity: 0, y: 24 },
+          { opacity: 0, y: 18 },
           {
             opacity: 1,
             y: 0,
             duration: 0.5,
-            stagger: 0.025,
+            stagger: 0.03,
             ease: "power3.out",
             scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
           }
         );
       }
 
-      const cards = gridRef.current?.querySelectorAll(".work-card");
-      if (cards) {
-        gsap.fromTo(
-          cards,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.08,
-            ease: "power3.out",
-            scrollTrigger: { trigger: gridRef.current, start: "top 85%" },
-          }
-        );
-      }
+      gsap.fromTo(
+        panelRef.current,
+        { opacity: 0, y: 60, rotateY: -18, rotateX: 4 },
+        {
+          opacity: 1,
+          y: 0,
+          rotateY: -12,
+          rotateX: 2,
+          duration: 1.4,
+          ease: "power3.out",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 70%" },
+        }
+      );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
+  const frame = FRAMES[active];
+
+  // Background ambient blobs
+  const ambient = (
+    <>
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 85% 90%, rgba(255,90,40,0.45), transparent 60%), radial-gradient(ellipse 55% 45% at 10% 30%, rgba(60,90,255,0.35), transparent 60%), radial-gradient(ellipse 70% 60% at 50% 50%, rgba(120,40,180,0.25), transparent 70%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "#070710" }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none mix-blend-screen opacity-90"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 85% 90%, rgba(255,110,50,0.55), transparent 60%), radial-gradient(ellipse 55% 45% at 8% 25%, rgba(70,110,255,0.45), transparent 60%), radial-gradient(ellipse 70% 60% at 50% 50%, rgba(140,50,200,0.3), transparent 70%)",
+        }}
+      />
+    </>
+  );
+
   const headingText = "Selected Work";
-
-  // Editorial grid: spans create rhythm. 12-col on lg.
-  const spans = [
-    "lg:col-span-7 lg:row-span-2 aspect-[4/5] lg:aspect-auto",
-    "lg:col-span-5 aspect-[4/3]",
-    "lg:col-span-5 aspect-[4/3]",
-    "lg:col-span-4 aspect-square",
-    "lg:col-span-4 aspect-square",
-    "lg:col-span-4 aspect-square",
-    "lg:col-span-6 aspect-[3/2]",
-    "lg:col-span-6 aspect-[3/2]",
-  ];
-
-  const featured = curatedItems.slice(0, 8);
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-[56px] md:py-[112px]"
-      style={{ background: "#0a0a0a" }}
+      className="relative overflow-hidden py-16 md:py-28"
+      style={{ background: "#050509", perspective: "2000px" }}
     >
-      {/* Ambient gradient wash */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none opacity-60"
-        style={{
-          background:
-            "radial-gradient(ellipse at 20% 0%, rgba(0,34,255,0.08), transparent 50%), radial-gradient(ellipse at 80% 100%, rgba(255,255,255,0.04), transparent 50%)",
-        }}
-      />
+      {ambient}
 
-      <div className="relative max-w-[1400px] mx-auto px-6 md:px-10">
-        {/* Header row */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
-          <div>
-            <div
-              ref={eyebrowRef}
-              className="flex items-center gap-3 mb-5"
-            >
-              <span
-                className="inline-block h-[6px] w-[6px] rounded-full"
-                style={{ background: ACCENT, boxShadow: `0 0 16px ${ACCENT}` }}
-              />
-              <span
-                className="font-[family-name:var(--font-space-grotesk)] text-[11px] tracking-[0.28em] uppercase text-white/60"
-              >
-                Portfolio &mdash; 2024 / 2025
-              </span>
-            </div>
-            <h2
-              ref={headingRef}
-              className="font-[family-name:var(--font-syne)] font-bold text-white text-[44px] leading-[0.95] md:text-[88px] tracking-[-0.03em]"
-              style={{ fontStretch: "125%" }}
-            >
-              {headingText.split("").map((char, i) => (
-                <span
-                  key={i}
-                  className="work-char inline-block opacity-0"
-                  style={{ width: char === " " ? "0.28em" : undefined }}
-                >
-                  {char === " " ? " " : char}
-                </span>
-              ))}
-            </h2>
-          </div>
-
-          <div className="md:max-w-[340px] md:text-right">
-            <p className="font-[family-name:var(--font-space-grotesk)] text-[13px] leading-[1.6] text-white/55">
-              A curated index of frames &mdash; wildlife, motion, portraiture.
-              Captured across India, Bahrain, and the road in between.
-            </p>
-            <div
-              className="mt-4 inline-flex items-center gap-2 font-[family-name:var(--font-space-grotesk)] text-[11px] tracking-[0.2em] uppercase text-white/40"
-            >
-              <span className="h-px w-8 bg-white/30" />
-              {featured.length.toString().padStart(2, "0")} frames
-            </div>
-          </div>
+      {/* Section heading */}
+      <div className="relative max-w-[1400px] mx-auto px-6 mb-10 md:mb-14 text-center">
+        <div className="inline-flex items-center gap-3 mb-4">
+          <span
+            className="h-[6px] w-[6px] rounded-full"
+            style={{ background: "#0022ff", boxShadow: "0 0 18px #0022ff" }}
+          />
+          <span className="font-[family-name:var(--font-space-grotesk)] text-[11px] tracking-[0.32em] uppercase text-white/55">
+            Showcase &mdash; The Virtual Gallery
+          </span>
         </div>
-
-        {/* Editorial grid */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 md:gap-5"
+        <h2
+          ref={headingRef}
+          className="font-[family-name:var(--font-syne)] font-bold text-white text-[40px] md:text-[68px] tracking-[-0.03em] leading-[0.95]"
+          style={{ fontStretch: "125%" }}
         >
-          {featured.map((item, i) => {
-            const isHovered = hoverIdx === i;
-            return (
-              <article
-                key={item.image}
-                className={`work-card group relative overflow-hidden ${spans[i] ?? "lg:col-span-4 aspect-square"}`}
-                style={{
-                  borderRadius: 24,
-                  background: "#141414",
-                  border: "1px solid #222",
-                  boxShadow: isHovered
-                    ? "0 32px 64px -16px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)"
-                    : "0 8px 16px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.04)",
-                  transition: "box-shadow 400ms cubic-bezier(0.22,1,0.36,1), transform 400ms cubic-bezier(0.22,1,0.36,1)",
-                  transform: isHovered ? "translateY(-4px)" : "translateY(0)",
-                  opacity: 0,
-                }}
-                onMouseEnter={() => setHoverIdx(i)}
-                onMouseLeave={() => setHoverIdx(null)}
-              >
-                {/* Image */}
-                <div className="absolute inset-0">
-                  <Image
-                    src={item.image}
-                    alt={item.text}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
-                    className="object-cover"
-                    style={{
-                      transform: isHovered ? "scale(1.06)" : "scale(1)",
-                      transition: "transform 900ms cubic-bezier(0.22,1,0.36,1), filter 400ms",
-                      filter: isHovered ? "saturate(1.05)" : "saturate(0.92)",
-                    }}
-                  />
-                </div>
+          {headingText.split("").map((c, i) => (
+            <span key={i} className="sw-char inline-block opacity-0" style={{ width: c === " " ? "0.28em" : undefined }}>
+              {c === " " ? " " : c}
+            </span>
+          ))}
+        </h2>
+      </div>
 
-                {/* Gradient veil */}
-                <div
-                  aria-hidden
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 45%, rgba(0,0,0,0) 100%)",
-                  }}
-                />
-
-                {/* Index chip */}
-                <div
-                  className="absolute top-4 left-4 md:top-5 md:left-5 flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md"
-                  style={{
-                    background: "rgba(255,255,255,0.08)",
-                    border: "1px solid rgba(255,255,255,0.12)",
-                    boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06)",
-                  }}
-                >
-                  <span
-                    className="h-[5px] w-[5px] rounded-full"
-                    style={{ background: ACCENT }}
-                  />
-                  <span className="font-[family-name:var(--font-space-grotesk)] text-[10px] tracking-[0.22em] uppercase text-white/85">
-                    {String(i + 1).padStart(2, "0")} / {String(featured.length).padStart(2, "0")}
-                  </span>
-                </div>
-
-                {/* Bottom meta */}
-                <div className="absolute inset-x-0 bottom-0 p-5 md:p-7">
-                  <div
-                    className="flex items-end justify-between gap-4"
-                    style={{
-                      transform: isHovered ? "translateY(0)" : "translateY(4px)",
-                      transition: "transform 500ms cubic-bezier(0.22,1,0.36,1)",
-                    }}
-                  >
-                    <div>
-                      <h3
-                        className="font-[family-name:var(--font-syne)] font-semibold text-white text-[22px] md:text-[28px] leading-[1.05] tracking-[-0.02em]"
-                      >
-                        {item.text}
-                      </h3>
-                      <div
-                        className="mt-2 flex items-center gap-2 font-[family-name:var(--font-space-grotesk)] text-[10px] tracking-[0.24em] uppercase"
-                        style={{
-                          color: isHovered ? "#ffffff" : "rgba(255,255,255,0.55)",
-                          transition: "color 300ms",
-                        }}
-                      >
-                        <span
-                          className="h-px transition-all duration-500"
-                          style={{
-                            width: isHovered ? 32 : 16,
-                            background: isHovered ? ACCENT : "rgba(255,255,255,0.4)",
-                          }}
-                        />
-                        View frame
-                      </div>
-                    </div>
-
-                    {/* Arrow disc */}
-                    <div
-                      className="shrink-0 grid place-items-center rounded-full"
-                      style={{
-                        width: 44,
-                        height: 44,
-                        background: isHovered ? ACCENT : "rgba(255,255,255,0.06)",
-                        border: `1px solid ${isHovered ? ACCENT : "rgba(255,255,255,0.14)"}`,
-                        boxShadow: isHovered
-                          ? `0 12px 32px ${ACCENT}55, inset 0 1px 0 rgba(255,255,255,0.3)`
-                          : "inset 0 1px 0 rgba(255,255,255,0.08)",
-                        transition: "all 400ms cubic-bezier(0.22,1,0.36,1)",
-                      }}
-                    >
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
-                        fill="none"
-                        style={{
-                          transform: isHovered ? "translate(2px,-2px)" : "translate(0,0)",
-                          transition: "transform 400ms cubic-bezier(0.22,1,0.36,1)",
-                        }}
-                      >
-                        <path
-                          d="M3 11L11 3M11 3H5M11 3V9"
-                          stroke="white"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Accent edge on hover */}
-                <div
-                  aria-hidden
-                  className="absolute inset-0 pointer-events-none rounded-[24px]"
-                  style={{
-                    boxShadow: isHovered
-                      ? `inset 0 0 0 1px ${ACCENT}55`
-                      : "inset 0 0 0 1px transparent",
-                    transition: "box-shadow 400ms",
-                  }}
-                />
-              </article>
-            );
-          })}
-        </div>
-
-        {/* Footer row */}
-        <div className="mt-12 md:mt-16 flex items-center justify-between gap-6">
-          <div className="font-[family-name:var(--font-space-grotesk)] text-[11px] tracking-[0.28em] uppercase text-white/35">
-            Index &mdash; complete archive
-          </div>
-          <a
-            href="/work"
-            className="group inline-flex items-center gap-3 px-6 py-3 rounded-full font-[family-name:var(--font-space-grotesk)] text-[12px] tracking-[0.22em] uppercase text-white"
+      {/* Tilted gallery panel */}
+      <div
+        className="relative max-w-[1400px] mx-auto px-4 md:px-8"
+        style={{ perspective: "2000px" }}
+      >
+        <div
+          ref={panelRef}
+          className="relative mx-auto"
+          style={{
+            transformStyle: "preserve-3d",
+            transform: "rotateY(-12deg) rotateX(2deg)",
+            transformOrigin: "60% 50%",
+          }}
+        >
+          <div
+            className="relative grid grid-cols-1 md:grid-cols-[minmax(280px,360px)_1fr] gap-6 md:gap-10 p-6 md:p-10"
             style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.14)",
-              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)",
-              transition: "all 300ms",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = ACCENT;
-              e.currentTarget.style.borderColor = ACCENT;
-              e.currentTarget.style.boxShadow = `0 16px 32px ${ACCENT}55, inset 0 1px 0 rgba(255,255,255,0.3)`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.04)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
-              e.currentTarget.style.boxShadow = "inset 0 1px 0 rgba(255,255,255,0.08)";
+              borderRadius: 32,
+              background:
+                "linear-gradient(145deg, rgba(30,25,50,0.55) 0%, rgba(15,12,28,0.65) 100%)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              boxShadow:
+                "0 32px 64px -16px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08), inset 0 0 0 1px rgba(255,255,255,0.04)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
             }}
           >
-            View full archive
-            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-              <path
-                d="M3 11L11 3M11 3H5M11 3V9"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </a>
+            {/* Edge highlight */}
+            <div
+              aria-hidden
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                borderRadius: 32,
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.03) 100%)",
+              }}
+            />
+
+            {/* Left: artist/frame list */}
+            <div className="relative flex flex-col">
+              <div className="mb-8">
+                <div className="font-[family-name:var(--font-syne)] font-bold tracking-[0.04em] text-white text-[18px]">
+                  RN STUDIO
+                </div>
+                <div className="font-[family-name:var(--font-space-grotesk)] text-[13px] tracking-[0.32em] uppercase text-white/55 mt-1">
+                  The Frame Index
+                </div>
+              </div>
+
+              <ul className="flex flex-col gap-2">
+                {FRAMES.map((f, i) => {
+                  const isActive = i === active;
+                  return (
+                    <li key={f.image}>
+                      <button
+                        onClick={() => setActive(i)}
+                        className="w-full text-left group"
+                        style={{
+                          borderRadius: 16,
+                          padding: isActive ? 12 : 14,
+                          background: isActive
+                            ? "linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 100%)"
+                            : "transparent",
+                          border: isActive
+                            ? "1px solid rgba(255,255,255,0.14)"
+                            : "1px solid transparent",
+                          boxShadow: isActive
+                            ? "inset 0 1px 0 rgba(255,255,255,0.10), 0 8px 24px rgba(0,0,0,0.3)"
+                            : "none",
+                          transition: "all 400ms cubic-bezier(0.22,1,0.36,1)",
+                        }}
+                      >
+                        <div className="flex items-center gap-4">
+                          {isActive ? (
+                            <div
+                              className="relative shrink-0 overflow-hidden"
+                              style={{
+                                width: 52,
+                                height: 52,
+                                borderRadius: 12,
+                                border: "1px solid rgba(255,255,255,0.18)",
+                                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12)",
+                              }}
+                            >
+                              <Image
+                                src={f.image}
+                                alt={f.title}
+                                fill
+                                sizes="52px"
+                                className="object-cover"
+                              />
+                            </div>
+                          ) : (
+                            <div
+                              className="shrink-0 grid place-items-center"
+                              style={{
+                                width: 36,
+                                height: 36,
+                                borderRadius: 10,
+                                border: "1px solid rgba(255,255,255,0.14)",
+                                background: "rgba(255,255,255,0.02)",
+                                color: "rgba(255,255,255,0.65)",
+                                fontFamily: "var(--font-space-grotesk)",
+                                fontSize: 12,
+                                letterSpacing: "0.05em",
+                                transition: "all 300ms",
+                              }}
+                            >
+                              {i + 1}
+                            </div>
+                          )}
+
+                          <div className="flex-1 min-w-0">
+                            <div
+                              className="font-[family-name:var(--font-syne)] font-semibold text-white truncate"
+                              style={{
+                                fontSize: isActive ? 18 : 16,
+                                letterSpacing: "-0.01em",
+                                transition: "font-size 300ms",
+                              }}
+                            >
+                              {f.title}
+                            </div>
+                            {isActive && (
+                              <>
+                                <div className="font-[family-name:var(--font-space-grotesk)] italic text-[12px] text-white/60 mt-0.5">
+                                  {f.style}
+                                </div>
+                                <div className="font-[family-name:var(--font-space-grotesk)] text-[13px] text-white/85 mt-0.5">
+                                  {f.medium}
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {/* Right: preview */}
+            <div className="relative flex flex-col">
+              {/* Big preview image */}
+              <div
+                className="relative w-full overflow-hidden"
+                style={{
+                  aspectRatio: "16 / 10",
+                  borderRadius: 20,
+                  border: "1px solid rgba(255,255,255,0.10)",
+                  boxShadow:
+                    "0 24px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.10)",
+                }}
+              >
+                <Image
+                  key={frame.image}
+                  src={frame.image}
+                  alt={frame.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                  className="object-cover"
+                  style={{
+                    animation: "swFade 600ms cubic-bezier(0.22,1,0.36,1)",
+                  }}
+                  priority
+                />
+              </div>
+
+              {/* Title block */}
+              <div className="text-center mt-6">
+                <div
+                  key={`t-${active}`}
+                  className="font-[family-name:var(--font-syne)] font-bold text-white text-[22px] md:text-[28px] tracking-[-0.01em]"
+                  style={{ animation: "swFade 500ms cubic-bezier(0.22,1,0.36,1)" }}
+                >
+                  {frame.title}
+                </div>
+                <div
+                  className="font-[family-name:var(--font-space-grotesk)] text-[13px] text-white/55 mt-1.5 flex items-center justify-center gap-3"
+                >
+                  <span>{frame.year}</span>
+                  <span className="h-[3px] w-[3px] rounded-full bg-white/35" />
+                  <span>{frame.style}</span>
+                </div>
+              </div>
+
+              {/* Thumbnail pill strip */}
+              <div className="mt-6 flex justify-center">
+                <div
+                  className="flex items-center gap-2 p-2 pr-2"
+                  style={{
+                    borderRadius: 20,
+                    background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(255,255,255,0.10)",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)",
+                    backdropFilter: "blur(12px)",
+                  }}
+                >
+                  {FRAMES.map((f, i) => {
+                    const isActive = i === active;
+                    return (
+                      <button
+                        key={f.image}
+                        onClick={() => setActive(i)}
+                        className="relative shrink-0 overflow-hidden"
+                        style={{
+                          width: 52,
+                          height: 52,
+                          borderRadius: 12,
+                          border: isActive
+                            ? "2px solid rgba(255,255,255,0.85)"
+                            : "1px solid rgba(255,255,255,0.10)",
+                          boxShadow: isActive
+                            ? "0 8px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2)"
+                            : "inset 0 1px 0 rgba(255,255,255,0.06)",
+                          opacity: isActive ? 1 : 0.7,
+                          transition: "all 300ms cubic-bezier(0.22,1,0.36,1)",
+                        }}
+                      >
+                        <Image src={f.image} alt={f.title} fill sizes="52px" className="object-cover" />
+                      </button>
+                    );
+                  })}
+
+                  {/* Next pill */}
+                  <button
+                    onClick={() => setActive((a) => (a + 1) % FRAMES.length)}
+                    className="grid place-items-center ml-1"
+                    style={{
+                      width: 60,
+                      height: 52,
+                      borderRadius: 12,
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.12)",
+                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10)",
+                      color: "white",
+                      transition: "all 300ms",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "rgba(255,255,255,0.10)";
+                      e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+                      e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
+                    }}
+                    aria-label="Next frame"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M6 3L11 8L6 13"
+                        stroke="currentColor"
+                        strokeWidth="1.75"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes swFade {
+          from {
+            opacity: 0;
+            transform: scale(1.02);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
     </section>
   );
 }
