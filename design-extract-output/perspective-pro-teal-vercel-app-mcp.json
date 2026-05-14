@@ -1,0 +1,164 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 189,
+        "contexts": [
+          "text",
+          "background",
+          "border"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 42,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#0022ff",
+        "rgb": {
+          "r": 0,
+          "g": 34,
+          "b": 255,
+          "a": 0.2
+        },
+        "hsl": {
+          "h": 232,
+          "s": 100,
+          "l": 50
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "content",
+      "tag": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 800
+      },
+      "heading": null,
+      "buttonCount": 8,
+      "cardCount": 15,
+      "className": "min-h-screen relative overflow-hidden flex items-center justify-center bg-[#050505] text-white selection:bg-white/30"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "button>svg",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "oklab(0 0 0 / 0)",
+            "color": "rgb(255, 255, 255)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "12px",
+            "border": "0px solid rgb(255, 255, 255)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 4
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button>img>div",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "12px",
+            "border": "0px solid rgb(255, 255, 255)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 4
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://perspective-pro-teal.vercel.app/_next/static/chunks/0obazk3056c9t.css",
+        "totalBytes": 31859,
+        "usedBytes": 24848,
+        "unusedBytes": 7011,
+        "unusedPercent": 22
+      }
+    ],
+    "totalBytes": 31859,
+    "usedBytes": 24848,
+    "unusedBytes": 7011,
+    "unusedPercent": 22,
+    "importantCount": 1,
+    "duplicates": 281,
+    "vendorPrefixes": {
+      "webkit": 31,
+      "moz": 4,
+      "ms": 0,
+      "o": 0
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        1,
+        4,
+        2
+      ],
+      "average": [
+        0,
+        0.84,
+        0.29
+      ],
+      "count": 343
+    },
+    "issues": [
+      "1 !important rule",
+      "281 duplicate declarations"
+    ]
+  }
+}

@@ -161,7 +161,7 @@ export default function AboutPage() {
               <div className="aspect-[3/4] rounded-lg overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=800&q=80"
-                  alt="Rohit Kumar - Photographer"
+                  alt="Rohit Narayan - Photographer"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -202,7 +202,7 @@ export default function AboutPage() {
 
               <div ref={bioRef} className="space-y-5">
                 <p className="bio-p font-[family-name:var(--font-space-grotesk)] font-light text-base leading-relaxed opacity-0">
-                  I&apos;m Rohit Kumar, a photographer driven by the intersection of
+                  I&apos;m Rohit Narayan, a photographer driven by the intersection of
                   speed and stillness. My lens captures the raw energy of
                   automotive engineering and the untamed beauty of wildlife —
                   two worlds that share a common thread of power, precision, and
@@ -279,7 +279,7 @@ export default function AboutPage() {
       <footer className="py-8 bg-black border-t border-white/5">
         <div className="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-[family-name:var(--font-space-grotesk)] text-xs text-[#5a5a5a]">
-            &copy; {new Date().getFullYear()} Rohit Kumar Photography. All rights reserved.
+            &copy; {new Date().getFullYear()} Rohit Narayan Photography. All rights reserved.
           </p>
           <p className="font-[family-name:var(--font-space-grotesk)] text-xs text-[#5a5a5a]">
             Designed & Developed with precision

@@ -22,7 +22,7 @@ export default function Home() {
       <footer className="py-8 bg-black border-t border-white/5">
         <div className="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-[family-name:var(--font-space-grotesk)] text-xs text-[#5a5a5a]">
-            &copy; {new Date().getFullYear()} Rohit Kumar Photography. All rights reserved.
+            &copy; {new Date().getFullYear()} Rohit Narayan Photography. All rights reserved.
           </p>
           <p className="font-[family-name:var(--font-space-grotesk)] text-xs text-[#5a5a5a]">
             Designed & Developed with precision

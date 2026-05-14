@@ -1,0 +1,13 @@
+Clone the design language of this landing page and build a fresh equivalent.
+Visual feel: flat. Tone: neutral · Headings: unknown
+Primary palette: #ffffff, #000000, #0022ff.
+Typography: [object Object].
+Corner radius vocabulary: 12, 16, 20, 24, 32.
+Shadow vocabulary: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.2) 0px 8px 16px 0px | rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.08) 0px 6px 16px -4px, rgba(0, 0, 0, 0.05) 0px 2px 6px -2px | rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset.
+Use: Use plain Tailwind CSS without a component library.
+Page structure:
+- hero
+- features
+- social proof
+- cta
+- footer

@@ -81,6 +81,24 @@ body {
   background-clip: text;
 }
 
+.hero-name {
+  text-wrap: balance;
+}
+
+.hero-char-art {
+  position: relative;
+  color: transparent;
+  background-image:
+    linear-gradient(180deg, #ebf8cc 0%, #90c95f 26%, #f2f2ef 50%, rgba(144, 151, 160, 0.94) 68%, #08090b 100%),
+    repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 12px);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.28);
+  -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.08);
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.08));
+}
+
 /* Gradient border utility */
 .gradient-border {
   position: relative;

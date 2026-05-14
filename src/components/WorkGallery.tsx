@@ -1,17 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import CircularGallery from "./CircularGallery";
 import { curatedItems } from "@/lib/images";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const CircularGallery = dynamic(
-  () => import("@/components/ui/CircularGallery"),
-  { ssr: false }
-);
 
 export default function WorkGallery() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -92,12 +87,11 @@ export default function WorkGallery() {
       <div className="relative h-[350px] sm:h-[500px] md:h-[600px] lg:h-[700px]">
         <CircularGallery
           items={curatedItems}
-          bend={5}
-          borderRadius={0.16}
-          scrollEase={0.04}
-          scrollSpeed={1.9}
+          bend={6}
           textColor="#ffffff"
-          font="bold 24px system-ui"
+          borderRadius={0.05}
+          scrollSpeed={0.9}
+          scrollEase={0.05}
         />
       </div>
 

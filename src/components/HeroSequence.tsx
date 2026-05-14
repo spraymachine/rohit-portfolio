@@ -11,10 +11,11 @@ export default function HeroSequence() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const nameContainerRef = useRef<HTMLHeadingElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
+  const contextRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  const nameText = "ROHIT KUMAR";
+  const nameText = "ROHIT NARAYAN";
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -70,6 +71,14 @@ export default function HeroSequence() {
         "-=0.15"
       );
 
+      // Highlight context fades in with the image
+      scrollTl.fromTo(
+        contextRef.current,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" },
+        "-=0.2"
+      );
+
       // Beat 4: Image zooms forward (transition to gallery)
       scrollTl.to(imageRef.current, {
         scale: 2.5,
@@ -77,6 +86,12 @@ export default function HeroSequence() {
         duration: 0.3,
         ease: "power2.in",
       });
+
+      scrollTl.to(
+        contextRef.current,
+        { y: -18, opacity: 0, duration: 0.2, ease: "power2.in" },
+        "-=0.25"
+      );
 
       // Overlay fades out
       scrollTl.to(overlayRef.current, { opacity: 0, duration: 0.2 }, "-=0.3");
@@ -98,25 +113,46 @@ export default function HeroSequence() {
       >
         <img
           src={getAssetPath("/portfolio/main.jpg")}
-          alt="Signature photograph by Rohit Kumar"
+          alt="Signature photograph by Rohit Narayan"
           className="w-full h-full object-cover"
         />
+      </div>
+
+      <div
+        ref={contextRef}
+        className="absolute left-5 right-5 bottom-8 sm:left-8 sm:right-auto sm:max-w-[560px] z-[15] opacity-0"
+      >
+        <p className="font-[family-name:var(--font-space-grotesk)] text-[10px] sm:text-xs tracking-[0.22em] text-[#d6d6d6] mb-2">
+          HIGHLIGHT FRAME
+        </p>
+        <p className="font-[family-name:var(--font-space-grotesk)] font-medium text-sm sm:text-base text-white/95 leading-relaxed">
+          A low-light chase sequence captured in a split second, where motion blur and hard contrast
+          turn speed into story.
+        </p>
       </div>
 
       {/* Text content */}
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center">
         <h1
           ref={nameContainerRef}
-          className="font-[family-name:var(--font-syne)] font-extrabold text-3xl sm:text-5xl md:text-7xl lg:text-8xl tracking-[-0.02em] text-white flex"
+          aria-label={nameText}
+          className="hero-name font-[family-name:var(--font-syne)] font-extrabold text-[clamp(1.9rem,8vw,4.8rem)] tracking-[-0.02em] text-white flex flex-wrap justify-center md:flex-nowrap md:whitespace-nowrap"
         >
           {nameText.split("").map((char, i) => (
-            <span
-              key={i}
-              className="hero-char inline-block opacity-0 translate-y-5"
-              style={{ display: char === " " ? "inline-block" : undefined, width: char === " " ? "0.3em" : undefined }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </span>
+            char === " " ? (
+              <span
+                key={i}
+                className="hero-char basis-full h-0 w-full opacity-0 translate-y-5 md:basis-auto md:h-auto md:w-[0.3em]"
+              />
+            ) : (
+              <span
+                key={i}
+                aria-hidden="true"
+                className="hero-char hero-char-art inline-block leading-[0.88] opacity-0 translate-y-5"
+              >
+                {char}
+              </span>
+            )
           ))}
         </h1>
         <p
@@ -124,11 +160,9 @@ export default function HeroSequence() {
           className="font-[family-name:var(--font-syne)] font-medium text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.4em] mt-4 sm:mt-6 opacity-0 translate-y-[10px]"
           style={{ color: "var(--text-secondary)" }}
         >
-          <span style={{ color: "#255f38" }}>WILDLIFE</span>
+          <span style={{ color: "#255f38" }}>PHOTOGRAPHER</span>
           {" \u00B7 "}
-          <span style={{ color: "#ce2626" }}>AUTOMOTIVE</span>
-          {" \u00B7 "}
-          PORTRAIT
+          <span style={{ color: "#ce2626" }}>VISUAL STORYTELLER</span>
         </p>
       </div>
     </section>

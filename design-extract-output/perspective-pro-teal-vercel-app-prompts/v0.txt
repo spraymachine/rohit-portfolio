@@ -1,0 +1,18 @@
+Build a landing page with this exact visual language.
+COLORS:
+  #ffffff
+  #000000
+  #0022ff
+FONTS: [object Object]
+SPACING: 2, 32, 40, 56
+RADIUS: 12, 16, 20, 24, 32
+SHADOWS: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.2) 0px 8px 16px 0px | rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.08) 0px 6px 16px -4px, rgba(0, 0, 0, 0.05) 0px 2px 6px -2px | rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset
+MATERIAL LANGUAGE: flat
+VOICE: Tone: neutral · Headings: unknown
+LIBRARY: Use plain Tailwind CSS without a component library.
+SECTIONS (in order):
+- hero
+- features
+- cta
+- footer
+Use Tailwind. Match these tokens exactly. Keep the material language consistent.

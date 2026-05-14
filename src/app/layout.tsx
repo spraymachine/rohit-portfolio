@@ -17,9 +17,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Rohit Kumar | Photography",
+  title: "Rohit Narayan | Photography",
   description:
-    "Automotive & Wildlife Photography by Rohit Kumar. Cinematic visuals that capture speed, nature, and the extraordinary.",
+    "Automotive & Wildlife Photography by Rohit Narayan. Cinematic visuals that capture speed, nature, and the extraordinary.",
   keywords: ["photography", "automotive", "wildlife", "portrait", "cinematic"],
 };
 
