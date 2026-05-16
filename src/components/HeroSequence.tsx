@@ -108,15 +108,31 @@ export default function HeroSequence() {
       {/* Signature photo */}
       <div
         ref={imageRef}
-        className="absolute inset-0 z-5 opacity-0"
-        style={{ clipPath: "inset(48% 10% 48% 10%)" }}
+        className="hero-signature absolute inset-0 z-5 opacity-0"
       >
-        <img
-          src={getAssetPath("/portfolio/main.jpg")}
-          alt="Signature photograph by Rohit Narayan"
-          className="w-full h-full object-cover"
-        />
+        <picture>
+          <source
+            media="(max-width: 639px)"
+            srcSet={getAssetPath("/portfolio/thumb/automotive/main.webp")}
+          />
+          <img
+            src={getAssetPath("/portfolio/main.jpg")}
+            alt="Signature photograph by Rohit Narayan"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 40%" }}
+          />
+        </picture>
       </div>
+      <style jsx>{`
+        .hero-signature {
+          clip-path: inset(48% 10% 48% 10%);
+        }
+        @media (max-width: 639px) {
+          .hero-signature {
+            clip-path: inset(38% 4% 38% 4%);
+          }
+        }
+      `}</style>
 
       <div
         ref={contextRef}
