@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import Navigation from "@/components/Navigation";
-import { portfolioImages, getFilteredImages, type ImageCategory } from "@/lib/images";
+import { getFilteredImages, type ImageCategory } from "@/lib/images";
 
 const DomeGallery = dynamic(() => import("@/components/ui/DomeGallery"), {
   ssr: false,
@@ -18,10 +18,11 @@ const DomeGallery = dynamic(() => import("@/components/ui/DomeGallery"), {
 
 const categories: { key: ImageCategory; label: string }[] = [
   { key: "all", label: "ALL" },
-  { key: "wildlife", label: "WILDLIFE" },
   { key: "automotive", label: "AUTOMOTIVE" },
-  { key: "portrait", label: "PORTRAIT" },
-  { key: "events", label: "EVENTS" },
+  { key: "wildlife", label: "WILDLIFE" },
+  { key: "product", label: "PRODUCT" },
+  { key: "portrait", label: "PORTRAITS" },
+  { key: "landscape", label: "LANDSCAPE" },
 ];
 
 export default function PortfolioPage() {
@@ -36,12 +37,14 @@ export default function PortfolioPage() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const filteredImages = useMemo(() => {
-    return getFilteredImages(activeCategory).map((img) => ({
-      src: img.src,
-      alt: img.alt,
-    }));
-  }, [activeCategory]);
+  const images = useMemo(
+    () =>
+      getFilteredImages(activeCategory).map((img) => ({
+        src: img.src,
+        alt: img.alt,
+      })),
+    [activeCategory]
+  );
 
   useEffect(() => {
     const chars = headingRef.current?.querySelectorAll(".port-char");
@@ -67,7 +70,6 @@ export default function PortfolioPage() {
     <>
       <Navigation />
       <main className="min-h-screen bg-black pt-24 pb-8">
-        {/* Page heading */}
         <div className="text-center mb-8">
           <h1
             ref={headingRef}
@@ -85,69 +87,65 @@ export default function PortfolioPage() {
           />
         </div>
 
-        {/* Category filters */}
         <div className="flex justify-center gap-3 mb-8 px-4 flex-wrap">
-          {categories.map((cat) => (
-            <motion.button
-              key={cat.key}
-              onClick={() => setActiveCategory(cat.key)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-3 sm:px-5 py-1.5 sm:py-2 rounded-full font-[family-name:var(--font-syne)] text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] transition-all duration-300 cursor-pointer"
-              style={{
-                border:
-                  activeCategory === cat.key
-                    ? cat.key === "wildlife"
-                      ? "1px solid #255f38"
-                      : cat.key === "automotive"
-                      ? "1px solid #ce2626"
-                      : "1px solid rgba(255,255,255,0.4)"
+          {categories.map((cat) => {
+            const active = activeCategory === cat.key;
+            const accent =
+              cat.key === "wildlife"
+                ? "#255f38"
+                : cat.key === "automotive"
+                ? "#ce2626"
+                : "#ffffff";
+            return (
+              <motion.button
+                key={cat.key}
+                onClick={() => setActiveCategory(cat.key)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-3 sm:px-5 py-1.5 sm:py-2 rounded-full font-[family-name:var(--font-syne)] text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] transition-all duration-300 cursor-pointer"
+                style={{
+                  border: active
+                    ? `1px solid ${accent}`
                     : "1px solid rgba(255,255,255,0.15)",
-                background:
-                  activeCategory === cat.key
+                  background: active
                     ? cat.key === "wildlife"
                       ? "rgba(37,95,56,0.15)"
                       : cat.key === "automotive"
                       ? "rgba(206,38,38,0.15)"
                       : "rgba(255,255,255,0.08)"
                     : "transparent",
-                color:
-                  activeCategory === cat.key
-                    ? cat.key === "wildlife"
-                      ? "#255f38"
-                      : cat.key === "automotive"
-                      ? "#ce2626"
-                      : "#ffffff"
-                    : "rgba(255,255,255,0.5)",
-              }}
-            >
-              {cat.label}
-            </motion.button>
-          ))}
+                  color: active ? accent : "rgba(255,255,255,0.5)",
+                }}
+              >
+                {cat.label}
+              </motion.button>
+            );
+          })}
         </div>
 
-        {/* Dome Gallery */}
         <motion.div
           key={activeCategory}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="w-full"
-          style={{ height: "calc(100vh - 280px)" }}
+          style={{
+            width: "100vw",
+            height: isMobile ? "75vh" : "100vh",
+          }}
         >
           <DomeGallery
-            images={filteredImages}
-            fit={0.5}
-            minRadius={isMobile ? 300 : 650}
-            maxVerticalRotationDeg={0}
-            segments={isMobile ? 16 : 34}
+            images={images}
+            fit={isMobile ? 0.45 : 0.5}
+            minRadius={isMobile ? 260 : 550}
+            maxRadius={isMobile ? 420 : Infinity}
+            maxVerticalRotationDeg={isMobile ? 3 : 6}
+            segments={isMobile ? 14 : 30}
+            dragSensitivity={isMobile ? 14 : 20}
             dragDampening={2}
             grayscale={false}
-            overlayBlurColor="#000000"
           />
         </motion.div>
 
-        {/* Interaction hint */}
         <div className="text-center mt-4">
           <p className="font-[family-name:var(--font-space-grotesk)] text-xs tracking-[0.2em] text-[#5a5a5a]">
             DRAG TO NAVIGATE &middot; CLICK TO ENLARGE

@@ -1,0 +1,49 @@
+- generic [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - button [ref=e6]:
+          - img [ref=e7]
+        - button [ref=e13]:
+          - img [ref=e14]
+        - button [ref=e17]:
+          - img [ref=e18]
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - generic [ref=e25]: ART VR
+            - paragraph [ref=e26]: The Virtual Gallery
+          - generic [ref=e27]:
+            - generic [ref=e28] [cursor=pointer]:
+              - generic [ref=e74]: "1"
+              - generic [ref=e33]: Elena Rostova
+            - generic [ref=e37] [cursor=pointer]:
+              - img "Marcus Vance" [ref=e75]
+              - generic [ref=e40]:
+                - generic [ref=e41]: Marcus Vance
+                - generic [ref=e77]:
+                  - generic [ref=e78]: Digital Realm
+                  - generic [ref=e79]: 3D Render
+            - generic [ref=e42] [cursor=pointer]:
+              - generic [ref=e44]: "3"
+              - generic [ref=e46]: Sophia Lin
+            - generic [ref=e47] [cursor=pointer]:
+              - generic [ref=e49]: "4"
+              - generic [ref=e51]: Julian Cross
+        - generic [ref=e52]:
+          - img "Ethereal Landscape" [ref=e80]
+          - generic [ref=e57]:
+            - generic [ref=e58]: Ethereal Landscape
+            - generic [ref=e59]: 2024 • Digital Realm
+          - generic [ref=e60]:
+            - button "Thumb 0" [ref=e61]:
+              - img "Thumb 0" [ref=e62]
+            - button "Thumb 1" [ref=e63]:
+              - img "Thumb 1" [ref=e64]
+            - button "Thumb 2" [ref=e65]:
+              - img "Thumb 2" [ref=e66]
+            - button "Thumb 3" [ref=e67]:
+              - img "Thumb 3" [ref=e68]
+            - button [active] [ref=e70]:
+              - img [ref=e71]
+  - alert [ref=e73]

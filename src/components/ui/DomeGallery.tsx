@@ -181,9 +181,17 @@ export default function DomeGallery({
 
   const items = useMemo(() => buildItems(images, segments), [images, segments]);
 
+  const pendingTransformRef = useRef<{ x: number; y: number } | null>(null);
+  const transformRAF = useRef<number | null>(null);
   const applyTransform = (xDeg: number, yDeg: number) => {
-    const el = sphereRef.current;
-    if (el) el.style.transform = `translateZ(calc(var(--radius) * -1)) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
+    pendingTransformRef.current = { x: xDeg, y: yDeg };
+    if (transformRAF.current != null) return;
+    transformRAF.current = requestAnimationFrame(() => {
+      transformRAF.current = null;
+      const p = pendingTransformRef.current;
+      const el = sphereRef.current;
+      if (el && p) el.style.transform = `translateZ(calc(var(--radius) * -1)) rotateX(${p.x}deg) rotateY(${p.y}deg)`;
+    });
   };
 
   const lockedRadiusRef = useRef<number | null>(null);
@@ -446,14 +454,13 @@ export default function DomeGallery({
                     onClick={(e) => { if (draggingRef.current || movedRef.current || performance.now() - lastDragEndAt.current < 80 || openingRef.current) return; openItemFromElement(e.currentTarget); }}
                     onPointerUp={(e) => { if ((e.nativeEvent as PointerEvent).pointerType !== "touch" || draggingRef.current || movedRef.current || performance.now() - lastDragEndAt.current < 80 || openingRef.current) return; openItemFromElement(e.currentTarget); }}
                     style={{ inset: "10px", borderRadius: `var(--tile-radius, ${imageBorderRadius})`, backfaceVisibility: "hidden" }}>
-                    <img src={it.src} draggable={false} alt={it.alt} className="w-full h-full object-cover pointer-events-none" style={{ backfaceVisibility: "hidden", filter: `var(--image-filter, ${grayscale ? "grayscale(1)" : "none"})` }} />
+                    <img src={it.src} draggable={false} alt={it.alt} loading="lazy" decoding="async" className="w-full h-full object-cover pointer-events-none" style={{ backfaceVisibility: "hidden", filter: `var(--image-filter, ${grayscale ? "grayscale(1)" : "none"})` }} />
                   </div>
                 </div>
               ))}
             </div>
           </div>
           <div className="absolute inset-0 m-auto z-[3] pointer-events-none" style={{ backgroundImage: `radial-gradient(rgba(235,235,235,0) 65%, var(--overlay-blur-color,${overlayBlurColor}) 100%)` }} />
-          <div className="absolute inset-0 m-auto z-[3] pointer-events-none" style={{ WebkitMaskImage: `radial-gradient(rgba(235,235,235,0) 70%, var(--overlay-blur-color,${overlayBlurColor}) 90%)`, maskImage: `radial-gradient(rgba(235,235,235,0) 70%, var(--overlay-blur-color,${overlayBlurColor}) 90%)`, backdropFilter: "blur(3px)" }} />
           <div className="absolute left-0 right-0 top-0 h-[120px] z-[5] pointer-events-none rotate-180" style={{ background: `linear-gradient(to bottom, transparent, var(--overlay-blur-color,${overlayBlurColor}))` }} />
           <div className="absolute left-0 right-0 bottom-0 h-[120px] z-[5] pointer-events-none" style={{ background: `linear-gradient(to bottom, transparent, var(--overlay-blur-color,${overlayBlurColor}))` }} />
           <div ref={viewerRef} className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center" style={{ padding: "var(--viewer-pad)" }}>
