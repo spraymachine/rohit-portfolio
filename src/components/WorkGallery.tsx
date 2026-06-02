@@ -382,67 +382,67 @@ export default function WorkGallery() {
       {/* ── MOBILE LAYOUT ── */}
       {isMobile && (
         <div className="relative px-3">
-          {/* Main swipeable card */}
+          {/* Main swipeable card — outer div is GSAP target (no overflow clip so image never crops) */}
           <div
             ref={mobileCardRef}
-            className="relative w-full overflow-hidden"
+            className="relative w-full"
             style={{
-              borderRadius: 20,
               boxShadow: "0 24px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.07)",
+              borderRadius: 20,
             }}
           >
-            {/* Ken Burns image — natural aspect ratio, no cropping */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              ref={mobileImgRef}
-              src={frame.image}
-              alt={frame.title}
-              className="sw-mob-img block w-full h-auto"
-              style={{
-                maxHeight: "72vh",
-                animation: "kenburnsMobile 20s ease-in-out infinite alternate",
-              }}
-            />
+            {/* Inner wrapper clips overlays to rounded corners */}
+            <div className="relative overflow-hidden" style={{ borderRadius: 20 }}>
+              {/* Full image — block flow sets container height, no cropping */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                ref={mobileImgRef}
+                src={frame.image}
+                alt={frame.title}
+                className="sw-mob-img block w-full h-auto"
+                style={{ maxHeight: "80vh" }}
+              />
 
-            {/* Dark gradient bottom */}
-            <div
-              aria-hidden
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 45%, transparent 70%)",
-              }}
-            />
-
-            {/* Top row: category tag + counter */}
-            <div className="absolute top-0 left-0 right-0 flex items-start justify-between p-3 pointer-events-none">
-              <span
-                className="font-[family-name:var(--font-space-grotesk)] text-[9px] tracking-[0.3em] uppercase px-2.5 py-1"
+              {/* Dark gradient bottom */}
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: "rgba(255,255,255,0.10)",
-                  border: "1px solid rgba(255,255,255,0.16)",
-                  borderRadius: 999,
-                  color: "rgba(255,255,255,0.8)",
-                  backdropFilter: "blur(8px)",
+                  background: "linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.25) 40%, transparent 65%)",
                 }}
-              >
-                {frame.style}
-              </span>
-              <span
-                className="font-[family-name:var(--font-space-grotesk)] text-[10px] tracking-[0.18em]"
-                style={{ color: "rgba(255,255,255,0.45)" }}
-              >
-                {String(active + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(FRAMES.length).padStart(2, "0")}
-              </span>
+              />
+
+              {/* Top row: category tag + counter */}
+              <div className="absolute top-0 left-0 right-0 flex items-start justify-between p-3 pointer-events-none">
+                <span
+                  className="font-[family-name:var(--font-space-grotesk)] text-[9px] tracking-[0.3em] uppercase px-2.5 py-1"
+                  style={{
+                    background: "rgba(255,255,255,0.10)",
+                    border: "1px solid rgba(255,255,255,0.16)",
+                    borderRadius: 999,
+                    color: "rgba(255,255,255,0.8)",
+                    backdropFilter: "blur(8px)",
+                  }}
+                >
+                  {frame.style}
+                </span>
+                <span
+                  className="font-[family-name:var(--font-space-grotesk)] text-[10px] tracking-[0.18em]"
+                  style={{ color: "rgba(255,255,255,0.45)" }}
+                >
+                  {String(active + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(FRAMES.length).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* Crop marks */}
+              <span className="sw-mob-crop sw-tl" aria-hidden />
+              <span className="sw-mob-crop sw-tr" aria-hidden />
+              <span className="sw-mob-crop sw-bl" aria-hidden />
+              <span className="sw-mob-crop sw-br" aria-hidden />
+
+              {/* Swipe zone */}
+              <div className="absolute inset-0" aria-hidden />
             </div>
-
-            {/* Crop marks */}
-            <span className="sw-mob-crop sw-tl" aria-hidden />
-            <span className="sw-mob-crop sw-tr" aria-hidden />
-            <span className="sw-mob-crop sw-bl" aria-hidden />
-            <span className="sw-mob-crop sw-br" aria-hidden />
-
-            {/* Swipe zone overlay (invisible, for gesture capture) */}
-            <div className="absolute inset-0" aria-hidden />
           </div>
 
           {/* Metadata row */}
