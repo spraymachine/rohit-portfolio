@@ -404,11 +404,13 @@ export default function WorkGallery() {
               />
 
               {/* Dark gradient bottom */}
+              {/* Subtle top scrim only — so tag/counter text readable */}
               <div
                 aria-hidden
-                className="absolute inset-0 pointer-events-none"
+                className="absolute top-0 left-0 right-0 pointer-events-none"
                 style={{
-                  background: "linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.25) 40%, transparent 65%)",
+                  height: "72px",
+                  background: "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 100%)",
                 }}
               />
 

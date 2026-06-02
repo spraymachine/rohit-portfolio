@@ -1,0 +1,115 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "RK" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - button "Toggle menu" [ref=e5] [cursor=pointer]
+  - main [ref=e8]:
+    - generic [ref=e9]:
+      - img "Signature photograph by Rohit Narayan" [ref=e13]
+      - generic [ref=e14]:
+        - paragraph [ref=e15]: HIGHLIGHT FRAME
+        - paragraph [ref=e16]: A low-light chase sequence captured in a split second, where motion blur and hard contrast turn speed into story.
+      - generic [ref=e17]:
+        - heading "ROHIT NARAYAN" [level=1] [ref=e18]:
+          - generic [ref=e19]: R
+          - generic [ref=e20]: O
+          - generic [ref=e21]: H
+          - generic [ref=e22]: I
+          - generic [ref=e23]: T
+          - generic [ref=e24]: "N"
+          - generic [ref=e25]: A
+          - generic [ref=e26]: R
+          - generic [ref=e27]: A
+          - generic [ref=e28]: "Y"
+          - generic [ref=e29]: A
+          - generic [ref=e30]: "N"
+        - paragraph [ref=e31]: PHOTOGRAPHER · VISUAL STORYTELLER
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e36]: Showcase — The Virtual Gallery
+        - heading "S e l e c t e d W o r k" [level=2] [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: S
+            - generic [ref=e40]: e
+            - generic [ref=e41]: l
+            - generic [ref=e42]: e
+            - generic [ref=e43]: c
+            - generic [ref=e44]: t
+            - generic [ref=e45]: e
+            - generic [ref=e46]: d
+          - generic [ref=e48]:
+            - generic [ref=e49]: W
+            - generic [ref=e50]: o
+            - generic [ref=e51]: r
+            - generic [ref=e52]: k
+      - generic [ref=e56]:
+        - img "Eagle" [ref=e59]
+        - generic [ref=e61]:
+          - button "Eagle" [ref=e62]:
+            - img "Eagle"
+          - button "Moto Race" [ref=e63]:
+            - img "Moto Race"
+          - button "Portrait" [ref=e64]:
+            - img "Portrait"
+          - button "Cinematic" [ref=e65]:
+            - img "Cinematic"
+          - button "Field 3617" [ref=e66]:
+            - img "Field 3617"
+          - button "Field 4068" [ref=e67]:
+            - img "Field 4068"
+          - button "Field 4086" [ref=e68]:
+            - img "Field 4086"
+          - button "Field 4175" [ref=e69]:
+            - img "Field 4175"
+          - button "Contrast" [ref=e70]:
+            - img "Contrast"
+          - button "Vista I" [ref=e71]:
+            - img "Vista I"
+          - button "Vista II" [ref=e72]:
+            - img "Vista II"
+          - button "Object" [ref=e73]:
+            - img "Object"
+          - button "Next frame" [ref=e74]:
+            - img [ref=e75]
+        - link "Enter the full archive" [ref=e78] [cursor=pointer]:
+          - /url: /portfolio/
+          - generic [ref=e79]: Enter the full archive
+          - img [ref=e81]
+    - generic [ref=e84]:
+      - heading "L E T ' S W O R K T O G E T H E R" [level=2] [ref=e85]:
+        - generic [ref=e86]:
+          - generic [ref=e87]: L
+          - generic [ref=e88]: E
+          - generic [ref=e89]: T
+          - generic [ref=e90]: "'"
+          - generic [ref=e91]: S
+        - generic [ref=e92]:
+          - generic [ref=e93]: W
+          - generic [ref=e94]: O
+          - generic [ref=e95]: R
+          - generic [ref=e96]: K
+        - generic [ref=e97]:
+          - generic [ref=e98]: T
+          - generic [ref=e99]: O
+          - generic [ref=e100]: G
+          - generic [ref=e101]: E
+          - generic [ref=e102]: T
+          - generic [ref=e103]: H
+          - generic [ref=e104]: E
+          - generic [ref=e105]: R
+      - paragraph [ref=e106]: Have a project in mind? Let's create something extraordinary.
+      - button "GET IN TOUCH" [ref=e108] [cursor=pointer]
+      - generic [ref=e109]:
+        - link "INSTAGRAM" [ref=e110] [cursor=pointer]:
+          - /url: "#"
+        - link "BEHANCE" [ref=e111] [cursor=pointer]:
+          - /url: "#"
+        - link "LINKEDIN" [ref=e112] [cursor=pointer]:
+          - /url: "#"
+  - contentinfo [ref=e114]:
+    - generic [ref=e115]:
+      - paragraph [ref=e116]: © 2026 Rohit Narayan Photography. All rights reserved.
+      - paragraph [ref=e117]: Designed & Developed with precision
+  - button "Open Next.js Dev Tools" [ref=e123] [cursor=pointer]:
+    - img [ref=e124]
