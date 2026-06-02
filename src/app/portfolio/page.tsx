@@ -69,11 +69,11 @@ export default function PortfolioPage() {
   return (
     <>
       <Navigation />
-      <main className="min-h-screen bg-black pt-24 pb-8">
-        <div className="text-center mb-8">
+      <main className="h-[100dvh] flex flex-col bg-black pt-16 sm:pt-24 overflow-hidden">
+        <div className="text-center mb-1 sm:mb-2 shrink-0">
           <h1
             ref={headingRef}
-            className="font-[family-name:var(--font-syne)] font-extrabold text-3xl sm:text-5xl md:text-7xl tracking-[-0.02em] flex justify-center"
+            className="font-[family-name:var(--font-syne)] font-extrabold text-xl sm:text-4xl md:text-5xl tracking-[-0.02em] flex justify-center"
           >
             {headingText.split("").map((char, i) => (
               <span key={i} className="port-char inline-block opacity-0">
@@ -82,12 +82,12 @@ export default function PortfolioPage() {
             ))}
           </h1>
           <div
-            className="h-[3px] w-[100px] mx-auto mt-4 rounded-full"
+            className="h-[2px] w-16 sm:w-[100px] mx-auto mt-2 sm:mt-4 rounded-full"
             style={{ background: "linear-gradient(90deg, #255f38, #ce2626)" }}
           />
         </div>
 
-        <div className="flex justify-center gap-3 mb-8 px-4 flex-wrap">
+        <div className="flex justify-center gap-2 mb-1 sm:mb-2 px-4 shrink-0 overflow-x-auto scrollbar-none" style={{ scrollbarWidth: "none" }}>
           {categories.map((cat) => {
             const active = activeCategory === cat.key;
             const accent =
@@ -102,7 +102,7 @@ export default function PortfolioPage() {
                 onClick={() => setActiveCategory(cat.key)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-3 sm:px-5 py-1.5 sm:py-2 rounded-full font-[family-name:var(--font-syne)] text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] transition-all duration-300 cursor-pointer"
+                className="shrink-0 px-3 sm:px-5 py-1 sm:py-2 rounded-full font-[family-name:var(--font-syne)] text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] transition-all duration-300 cursor-pointer"
                 style={{
                   border: active
                     ? `1px solid ${accent}`
@@ -128,29 +128,22 @@ export default function PortfolioPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          style={{
-            width: "100vw",
-            height: isMobile ? "75vh" : "100vh",
-          }}
+          className="relative flex-1 min-h-0 w-full"
         >
           <DomeGallery
             images={images}
-            fit={isMobile ? 0.45 : 0.5}
-            minRadius={isMobile ? 260 : 550}
-            maxRadius={isMobile ? 420 : Infinity}
-            maxVerticalRotationDeg={isMobile ? 3 : 6}
-            segments={isMobile ? 14 : 30}
-            dragSensitivity={isMobile ? 14 : 20}
-            dragDampening={2}
+            fit={isMobile ? 0.66 : 0.5}
+            minRadius={isMobile ? 216 : 600}
+            maxVerticalRotationDeg={isMobile ? 14 : 18}
+            segments={isMobile ? 14 : 34}
+            dragSensitivity={isMobile ? 10 : 20}
+            dragDampening={0.4}
             grayscale={false}
           />
-        </motion.div>
-
-        <div className="text-center mt-4">
-          <p className="font-[family-name:var(--font-space-grotesk)] text-xs tracking-[0.2em] text-[#5a5a5a]">
+          <p className="absolute bottom-3 left-0 right-0 text-center font-[family-name:var(--font-space-grotesk)] text-xs tracking-[0.2em] text-[#5a5a5a] pointer-events-none">
             DRAG TO NAVIGATE &middot; CLICK TO ENLARGE
           </p>
-        </div>
+        </motion.div>
       </main>
     </>
   );

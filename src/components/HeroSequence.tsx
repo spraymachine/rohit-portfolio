@@ -116,7 +116,7 @@ export default function HeroSequence() {
             srcSet={getAssetPath("/portfolio/thumb/automotive/main.webp")}
           />
           <img
-            src={getAssetPath("/portfolio/main.jpg")}
+            src={getAssetPath("/portfolio/sw/main.webp")}
             alt="Signature photograph by Rohit Narayan"
             className="w-full h-full object-cover"
             style={{ objectPosition: "center 40%" }}
