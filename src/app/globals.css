@@ -89,7 +89,7 @@ body {
   position: relative;
   color: transparent;
   background-image:
-    linear-gradient(180deg, #ebf8cc 0%, #90c95f 26%, #f2f2ef 50%, rgba(144, 151, 160, 0.94) 68%, #08090b 100%),
+    linear-gradient(180deg, #ebf8cc 0%, #90c95f 26%, #f2f2ef 50%, rgba(120, 15, 15, 0.96) 68%, #1e0303 100%),
     repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 12px);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

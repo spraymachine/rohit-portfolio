@@ -60,10 +60,27 @@ export const portfolioImages: PortfolioImage[] = [
   { src: getAssetPath("/portfolio/thumb/landscape/WhatsApp_Image_2026_04_27_at_11_54_14.webp"), alt: "Landscape 14", category: "landscape" },
   { src: getAssetPath("/portfolio/thumb/landscape/WhatsApp_Image_2026_04_27_at_11_54_19.webp"), alt: "Landscape 19", category: "landscape" },
   { src: getAssetPath("/portfolio/thumb/landscape/WhatsApp_Image_2026_04_27_at_11_54_20.webp"), alt: "Landscape 20", category: "landscape" },
+  { src: getAssetPath("/portfolio/thumb/landscape/IMG_4205 edit.jpg"), alt: "Landscape 4205", category: "landscape" },
+  { src: getAssetPath("/portfolio/thumb/landscape/IMG_4903 pano edit new.jpg"), alt: "Landscape 4903 Pano", category: "landscape" },
+  { src: getAssetPath("/portfolio/thumb/landscape/IMG_4925 edit.jpg"), alt: "Landscape 4925", category: "landscape" },
+  { src: getAssetPath("/portfolio/thumb/landscape/IMG_4960 edit.jpg"), alt: "Landscape 4960", category: "landscape" },
+  { src: getAssetPath("/portfolio/thumb/landscape/IMG_4963 edit.jpg"), alt: "Landscape 4963", category: "landscape" },
+  { src: getAssetPath("/portfolio/thumb/landscape/IMG_5421 edit.jpg"), alt: "Landscape 5421", category: "landscape" },
+  { src: getAssetPath("/portfolio/thumb/landscape/IMG_5434 edit.jpg"), alt: "Landscape 5434", category: "landscape" },
+  { src: getAssetPath("/portfolio/thumb/landscape/IMG_5458 edit.jpg"), alt: "Landscape 5458", category: "landscape" },
 
   // Portrait
   { src: getAssetPath("/portfolio/thumb/portrait/IMG_20240116_125019_899.webp"), alt: "Portrait 20240116", category: "portrait" },
   { src: getAssetPath("/portfolio/thumb/portrait/IMG_5799_edit_1.webp"), alt: "Cinematic", category: "portrait" },
+  { src: getAssetPath("/portfolio/thumb/portrait/IMG_5231 edit 1.jpg"), alt: "Portrait 5231", category: "portrait" },
+  { src: getAssetPath("/portfolio/thumb/portrait/IMG_5504 new.jpg"), alt: "Portrait 5504", category: "portrait" },
+  { src: getAssetPath("/portfolio/thumb/portrait/IMG_5508 edit.jpg"), alt: "Portrait 5508", category: "portrait" },
+  { src: getAssetPath("/portfolio/thumb/portrait/IMG_5518 edit.jpg"), alt: "Portrait 5518", category: "portrait" },
+  { src: getAssetPath("/portfolio/thumb/portrait/IMG_5684 edit.jpg"), alt: "Portrait 5684", category: "portrait" },
+  { src: getAssetPath("/portfolio/thumb/portrait/IMG_5700 edit 1.jpg"), alt: "Portrait 5700", category: "portrait" },
+  { src: getAssetPath("/portfolio/thumb/portrait/IMG_5708 edit.jpg"), alt: "Portrait 5708", category: "portrait" },
+  { src: getAssetPath("/portfolio/thumb/portrait/IMG_5776 edit 1.png"), alt: "Portrait 5776", category: "portrait" },
+  { src: getAssetPath("/portfolio/thumb/portrait/IMG_6415 edit 1.jpg"), alt: "Portrait 6415", category: "portrait" },
 
   // Product
   { src: getAssetPath("/portfolio/thumb/product/WhatsApp_Image_2026_04_27_at_11_54_16.webp"), alt: "Product 16", category: "product" },

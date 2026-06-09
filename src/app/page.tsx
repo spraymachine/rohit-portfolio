@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import HeroSequence from "@/components/HeroSequence";
 import WorkGallery from "@/components/WorkGallery";
+import AboutSection from "@/components/AboutSection";
 import ContactCTA from "@/components/ContactCTA";
 
 export default function Home() {
@@ -14,7 +15,10 @@ export default function Home() {
         {/* Scene 2: Circular Gallery - Selected Work */}
         <WorkGallery />
 
-        {/* Scene 3: Contact CTA */}
+        {/* Scene 3: About */}
+        <AboutSection />
+
+        {/* Scene 4: Contact CTA */}
         <ContactCTA />
       </main>
 

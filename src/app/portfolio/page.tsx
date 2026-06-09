@@ -87,7 +87,7 @@ export default function PortfolioPage() {
           />
         </div>
 
-        <div className="flex justify-center gap-2 mb-1 sm:mb-2 px-4 shrink-0 overflow-x-auto scrollbar-none" style={{ scrollbarWidth: "none" }}>
+        <div className="flex flex-wrap justify-center gap-2 mb-1 sm:mb-2 px-4 shrink-0 sm:flex-nowrap sm:overflow-x-auto" style={{ scrollbarWidth: "none" }}>
           {categories.map((cat) => {
             const active = activeCategory === cat.key;
             const accent =
@@ -132,10 +132,10 @@ export default function PortfolioPage() {
         >
           <DomeGallery
             images={images}
-            fit={isMobile ? 0.66 : 0.5}
-            minRadius={isMobile ? 216 : 600}
+            fit={isMobile ? 0.75 : 0.5}
+            minRadius={isMobile ? 300 : 600}
             maxVerticalRotationDeg={isMobile ? 14 : 18}
-            segments={isMobile ? 14 : 34}
+            segments={isMobile ? 28 : 34}
             dragSensitivity={isMobile ? 10 : 20}
             dragDampening={0.4}
             grayscale={false}
